@@ -4,8 +4,8 @@
 # MVP (DOM - CANVAS)
 ## Backlog
 
-#Data Structure
+# Data Structure
 
-#Task
+# Task
 
-#Links
+# Links
