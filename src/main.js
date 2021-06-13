@@ -31,6 +31,7 @@ building_2.src = '../img/building/obj_2.png'
 //--------------
 //  Variables
 //--------------
+let intervalJumpId = 0;
 let intervalId = 0;
 let gameOver = false;
 // X and Y positions
@@ -40,6 +41,9 @@ let building_2X = 650, building_2Y = 470;
 let groundX = 40, groundY = 485;
 // Booleans
 let jump = false;
+//Gravity
+let gravity = 0.9  ; // check functionality
+let n = 40 ;
 
 //--------------
 // functions
@@ -47,34 +51,29 @@ let jump = false;
 
 //ninja function
   function ninjaJump(){ 
-    // if (jump){
-    //     ninjaY -= 5
-    //    }else{
-    //         if (ninjaY < groundY){
-    //             ninjaY += 2   
-    //         }
-    //          if ( ninjaY > groundY){
-    //             ninjaY
-    //          }
-    //    }
-
+    
     if (jump){
-        ninjaY -= 5
+        n = n * gravity
+        console.log(n)
+        ninjaY -= n   
+        
             if (ninjaY < 330){
                 jump = false;
             }
+
        }else{
-            if (ninjaY < groundY){
-                ninjaY += 2   
+            if (ninjaY < groundY){ 
+                ninjaY += 10  
             }
              if ( ninjaY > groundY){
                 ninjaY
+                n = 40;
              }
        }
-  }
+}
 
 //building function
-
+  
 
 //Draw function to animate
 function draw(){
@@ -93,6 +92,8 @@ function draw(){
     //Invoked Functions
     //Ninja jump 
     ninjaJump()
+    
+    
 
        
 
@@ -111,15 +112,22 @@ function draw(){
 window.addEventListener('load', () => {
     draw()
 
+    // varible to avoid keydown held press
+    let fired = false;
     document.addEventListener('keydown', (event) => {
-        if (event.code === 'Space'){
-            jump = true  
+        if(!fired) {
+            fired = true;
+           
+            if (event.code ===  'Space') {
+                jump = true; 
+            }
         }
     })
 
     document.addEventListener('keyup', (event) => {
+        fired = false;
         if (event.code === 'Space'){
-            jump = false
+            jump = false;
         }
     })
 
