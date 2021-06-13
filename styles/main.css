@@ -1,2 +1,23 @@
 @import url(./start.css);
 @import url(./restart.css);
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: '';
+    background-color: #ECAE97;
+  }
+
+#game-page{
+    display: flex;
+    justify-content: space-around;
+}
+
+#canvas-container{
+    margin-top: 35px;
+}
+
+#canvas{
+    border-radius: 50%;
+}
