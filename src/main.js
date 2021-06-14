@@ -57,11 +57,41 @@ let up = 10 ;
 let down = 3;
 
 //random Buildings to be print
-let buildingsArr =[building_1, building_2, building_3, building_4]
-let randombuilding_1 = buildingsArr[Math.floor(Math.random() * (buildingsArr.length))]
-let randombuilding_2 = buildingsArr[Math.floor(Math.random() * (buildingsArr.length))]
-let randombuilding_3 = buildingsArr[Math.floor(Math.random() * (buildingsArr.length))]
-let randombuilding_4 = buildingsArr[Math.floor(Math.random() * (buildingsArr.length))]
+let buildingsArr = [ building_1, building_2, building_3, building_4 ];
+
+let randombuilding_1 = buildingsArr[Math.floor( Math.random() * (buildingsArr.length) )]
+let randombuilding_2 = buildingsArr[Math.floor( Math.random() * (buildingsArr.length) )]
+let randombuilding_3 = buildingsArr[Math.floor( Math.random() * (buildingsArr.length) )]
+let randombuilding_4 = buildingsArr[Math.floor( Math.random() * (buildingsArr.length) )]
+
+
+
+//-------------- test ---------------
+
+
+//let randombuildingArr= [randombuilding_1, randombuilding_2, randombuilding_3, randombuilding_4]
+
+// function randomarr() {
+//     for (let n = 0; n < randombuildingArr.lenght; n++){
+//         return randombuildingArr[n]
+//     }
+// }
+
+// let dist = [
+//     {x:340 , y: 490},
+    
+//     {x:590 , y: 490},
+
+//     {x:8040 , y: 490},
+
+//     {x:1200 , y: 490}
+// ]
+
+//-------------- test ---------------
+
+
+
+
 
 //--------------
 // functions
@@ -102,6 +132,9 @@ function Building(){
     building_4X = building_4X - 2
 
 }
+
+
+
   
 
 //Draw function to animate
@@ -112,11 +145,92 @@ function draw(){
     //Ninja image
    ctx.drawImage( ninja, ninjaX, ninjaY )
 
+
+   //-------------- test ---------------
     //Objects and buildings images printed random
-    ctx.drawImage( randombuilding_1, building_1X, building_1Y )
-    ctx.drawImage( randombuilding_2, building_2X, building_2Y )
-    ctx.drawImage( randombuilding_3, building_3X, building_3Y )
-    ctx.drawImage( randombuilding_4, building_4X, building_4Y )
+
+        // for( let i = 0; i < randombuildingArr.length; i++ ) {
+        // }
+        //-----------------------------------------------------------------------------
+                ctx.drawImage( randombuilding_1, building_1X , building_1Y )
+                ctx.drawImage( randombuilding_2, building_2X , building_2Y )
+                ctx.drawImage( randombuilding_3, building_3X , building_3Y ) 
+                ctx.drawImage( randombuilding_4, building_4X , building_4Y )
+                    
+
+                // if (randombuilding_1 < 0 || randombuilding_2 < 0  ){
+                // ctx.drawImage( randombuilding_1, building_1X , building_1Y )
+            
+                // }
+
+         //-----------------------------------------------------------------------------
+
+
+                // for( let i = 0; i < dist.length; i++ ) {
+                // ctx.drawImage( randombuilding_1, dist[i].x , dist[i].y )
+                // ctx.drawImage( randombuilding_2, dist[i].x , dist[i].y )
+                // ctx.drawImage( randombuilding_3, dist[i].x , dist[i].y ) 
+                // ctx.drawImage( randombuilding_4, dist[i].x , dist[i].y )
+                //     dist[i].x -= 2
+
+                //     if (dist[i].x < 0) {
+                //         dist[i] = {
+                //             x:800,
+                //             y: 490
+                //         }
+                //     }
+                // }
+         //-----------------------------------------------------------------------------
+
+                // for( let i = 0; i < dist.length; i++ ) {
+                //     ctx.drawImage( randomaarr(), dist[i].x , dist[i].y )
+                //     ctx.drawImage( randomarr(), dist[i].x , dist[i].y )
+                //     ctx.drawImage( randomarr(), dist[i].x , dist[i].y ) 
+                //     ctx.drawImage( randomarr(), dist[i].x , dist[i].y )
+                //         dist[i].x -= 2
+    
+                //         if (dist[i].x < 0) {
+                //             dist[i] = {
+                //                 x:800,
+                //                 y: 490
+                //             }
+                //         }
+                //    }
+
+
+             //-----------------------------------------------------------------------------    
+          
+            //     for (let n = 0; n < randombuildingArr.lenght; n++){
+                       
+            //         for( let i = 0; i < dist.length; i++ ) {
+            //             ctx.drawImage( randombuildingArr[n], dist[i].x , dist[i].y )
+            //             ctx.drawImage( randombuildingArr[n], dist[i].x , dist[i].y )
+            //             ctx.drawImage( randombuildingArr[n], dist[i].x , dist[i].y ) 
+            //             ctx.drawImage( randombuildingArr[n], dist[i].x , dist[i].y )
+            //             dist[i].x -= 2
+
+            //             // if (dist[i].x < 0) {
+            //             //     dist[i] = {
+            //             //         x:800,
+            //             //         y: 490
+            //             //     }
+            //             // }
+            //     }
+
+            // }
+    
+
+            //-------------- test ---------------
+                
+
+                
+              
+
+            
+              
+    
+    
+
    
     //Graund image
     ctx.drawImage( ground, groundX, groundY)
