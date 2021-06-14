@@ -28,6 +28,9 @@ building_3.src = '../img/building/obj_3.png'
 let building_4 = new Image();
 building_4.src = '../img/building/obj_4.png'
 
+let building_5 = new Image();
+building_5.src = '../img/building/obj_5.png'
+
 //--------------
 //  Audio
 //--------------
@@ -59,14 +62,33 @@ let down = 3;
 //random Buildings to be print
 let buildingsArr = [ building_1, building_2, building_3, building_4 ];
 
+
+
 let randombuilding_1 = buildingsArr[Math.floor( Math.random() * (buildingsArr.length) )]
+
 let randombuilding_2 = buildingsArr[Math.floor( Math.random() * (buildingsArr.length) )]
+
 let randombuilding_3 = buildingsArr[Math.floor( Math.random() * (buildingsArr.length) )]
+
 let randombuilding_4 = buildingsArr[Math.floor( Math.random() * (buildingsArr.length) )]
 
 
 
+
+
+
+
+
 //-------------- test ---------------
+// let randombuilding = buildingsArr[Math.floor( Math.random() * (buildingsArr.length) )]
+
+// function randomArrObs() {
+   
+
+//     for(let i = 0; i < buildingsArr.length; i++){
+//         ctx.drawImage( buildingsArr[i], building_1X , building_1Y )
+//     }
+// }
 
 
 //let randombuildingArr= [randombuilding_1, randombuilding_2, randombuilding_3, randombuilding_4]
@@ -126,15 +148,12 @@ function ninjaJump(){
 //building function
 function Building(){
 
-    building_1X = building_1X - 2
+    building_1X = building_1X - 1
     building_2X = building_2X - 2
     building_3X = building_3X - 2
     building_4X = building_4X - 2
 
 }
-
-
-
   
 
 //Draw function to animate
@@ -146,16 +165,23 @@ function draw(){
    ctx.drawImage( ninja, ninjaX, ninjaY )
 
 
+//    ctx.drawImage( randombuilding_1, building_1X , building_1Y )
+//    ctx.drawImage( randombuilding_2, building_2X , building_2Y )
+//    ctx.drawImage( randombuilding_3, building_3X , building_3Y ) 
+//    ctx.drawImage( randombuilding_4, building_4X , building_4Y )
+
+    ctx.drawImage(building_5, building_1X , building_1Y )
+   
    //-------------- test ---------------
+
+   //randomArrObs()
+
     //Objects and buildings images printed random
 
         // for( let i = 0; i < randombuildingArr.length; i++ ) {
         // }
         //-----------------------------------------------------------------------------
-                ctx.drawImage( randombuilding_1, building_1X , building_1Y )
-                ctx.drawImage( randombuilding_2, building_2X , building_2Y )
-                ctx.drawImage( randombuilding_3, building_3X , building_3Y ) 
-                ctx.drawImage( randombuilding_4, building_4X , building_4Y )
+                
                     
 
                 // if (randombuilding_1 < 0 || randombuilding_2 < 0  ){
@@ -222,15 +248,6 @@ function draw(){
 
             //-------------- test ---------------
                 
-
-                
-              
-
-            
-              
-    
-    
-
    
     //Graund image
     ctx.drawImage( ground, groundX, groundY)
@@ -240,10 +257,55 @@ function draw(){
     ninjaJump()
     //Building movement 
     Building()
+
+    //collision
+
+    // if (ninjaX < building_1X + building_1.width && ninjaX + ninja.width >  building_1X && ninjaY < building_1Y + building_1.height && ninjaY + ninja.height > building_1Y){
+    //     gameOver = true;
+    // }
+
+    if(ninjaX < building_1X + building_5.width && ninjaX >= building_1X && ninjaY < building_1Y ){
+        ninjaY  = (building_5.height)
+
+
+        if (jump){
+            up = up * gravity
+            ninjaY -= up   
+            
+                if (ninjaY < 410){
+                    jump = false;
+                }
+    
+           }else{  
+
+                if (ninjaY < building_1Y){ 
+                    down = down * 1.08  
+                    ninjaY += down 
+                }    
+                 if ( ninjaY > building_1Y - 20){
+                    ninjaY 
+                    down = 3;
+                    up = 10;
+                 }
+           }
+
+    }
+
+    
+
+     if (ninjaX < building_1X && ninjaX + ninja.width >  building_1X + 22 && ninjaY < building_1Y + building_5.height && ninjaY + ninja.height > building_1Y){
+    
+            gameOver = true; 
+            
+        }   
+    
+
+
+     
    
    
 
-
+ 
     if (gameOver) {
         cancelAnimationFrame(intervalId)
     }else{
