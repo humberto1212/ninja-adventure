@@ -1,7 +1,26 @@
-//Canvas 
-let canvas = document.getElementById('canvas');
-let ctx = canvas.getContext('2d');
  
+
+//--------------
+//   Selectors
+//--------------
+//Canvas
+let canvas = document.querySelector('canvas');
+//Pages
+let startPage = document.querySelector('#start-page')
+let gamePage = document.querySelector('#game-page')
+let gameOverPage = document.querySelector('#game-over-page')
+//Buttons
+let startBtn = document.querySelector('#start-btn')
+let restartBtn = document.querySelector('#restart-btn')
+//Dom score
+let gameScoreDec = document.querySelector('#score-number-dec')
+let gameScoreUni = document.querySelector('#score-number-uni')
+let totalScoreDec = document.querySelector('#total-number-dec')
+let totalScoreUni = document.querySelector('#total-number-uni')
+
+
+
+
 
 //--------------
 //   Images
@@ -40,6 +59,7 @@ building_5.src = '../img/building/obj_5.png'
 //--------------
 //  Variables
 //--------------
+let ctx = canvas.getContext('2d');
 let intervalJumpId = 0;
 let intervalId = 0;
 let gameOver = false;
@@ -154,6 +174,56 @@ function Building(){
     building_4X = building_4X - 2
 
 }
+
+//Class for score
+class time {
+    constructor() {
+     this.currentTime = 0;
+     this.intervalId = null;
+    }
+  
+    start(callback) {
+        
+        this.intervalId = setInterval(() => { 
+        this.currentTime += 1
+          
+        if(callback !== null){
+          callback();
+        }
+      }, 1000);
+   
+    }
+
+    getSeconds() {
+        return Number(this.currentTime);
+      }
+
+      computeManyDigitNumber(value) {
+    
+        if(value < 10){
+            return '0' + value
+          }else {
+            return '' + value
+          }
+      }
+
+      stop() {
+        clearInterval(this.intervalId)
+      }
+}
+
+const score =  new time();
+
+function printScore() {
+    let seconds = score.computeManyDigitNumber(score.getSeconds())
+    gameScoreUni.innerHTML = seconds[1];
+    gameScoreDec.innerHTML = seconds[0];
+    totalScoreUni.innerHTML = seconds[1];
+    totalScoreDec.innerHTML = seconds[0];
+    
+}
+
+
   
 
 //Draw function to animate
@@ -170,9 +240,10 @@ function draw(){
 //    ctx.drawImage( randombuilding_3, building_3X , building_3Y ) 
 //    ctx.drawImage( randombuilding_4, building_4X , building_4Y )
 
-    ctx.drawImage(building_5, building_1X , building_1Y )
+    
    
    //-------------- test ---------------
+   ctx.drawImage(building_5, building_1X , building_1Y )
 
    //randomArrObs()
 
@@ -206,44 +277,6 @@ function draw(){
                 //         }
                 //     }
                 // }
-         //-----------------------------------------------------------------------------
-
-                // for( let i = 0; i < dist.length; i++ ) {
-                //     ctx.drawImage( randomaarr(), dist[i].x , dist[i].y )
-                //     ctx.drawImage( randomarr(), dist[i].x , dist[i].y )
-                //     ctx.drawImage( randomarr(), dist[i].x , dist[i].y ) 
-                //     ctx.drawImage( randomarr(), dist[i].x , dist[i].y )
-                //         dist[i].x -= 2
-    
-                //         if (dist[i].x < 0) {
-                //             dist[i] = {
-                //                 x:800,
-                //                 y: 490
-                //             }
-                //         }
-                //    }
-
-
-             //-----------------------------------------------------------------------------    
-          
-            //     for (let n = 0; n < randombuildingArr.lenght; n++){
-                       
-            //         for( let i = 0; i < dist.length; i++ ) {
-            //             ctx.drawImage( randombuildingArr[n], dist[i].x , dist[i].y )
-            //             ctx.drawImage( randombuildingArr[n], dist[i].x , dist[i].y )
-            //             ctx.drawImage( randombuildingArr[n], dist[i].x , dist[i].y ) 
-            //             ctx.drawImage( randombuildingArr[n], dist[i].x , dist[i].y )
-            //             dist[i].x -= 2
-
-            //             // if (dist[i].x < 0) {
-            //             //     dist[i] = {
-            //             //         x:800,
-            //             //         y: 490
-            //             //     }
-            //             // }
-            //     }
-
-            // }
     
 
             //-------------- test ---------------
@@ -257,6 +290,9 @@ function draw(){
     ninjaJump()
     //Building movement 
     Building()
+
+
+
 
     //collision
 
@@ -291,34 +327,50 @@ function draw(){
 
     }
 
-    
-
      if (ninjaX < building_1X && ninjaX + ninja.width >  building_1X + 22 && ninjaY < building_1Y + building_5.height && ninjaY + ninja.height > building_1Y){
     
             gameOver = true; 
             
         }   
-    
-
-
-     
-   
-   
 
  
     if (gameOver) {
         cancelAnimationFrame(intervalId)
+        gameOverPage.style.display = 'block'
+        canvas.style.display = 'none'
+        startPage.style.display = 'none'
+        gamePage.style.display = 'none'
+        score.stop();
+
+        
     }else{
         intervalId = requestAnimationFrame(draw)
     }   
 }
+
+//Start function 
+  function start() {
+    canvas.style.display = 'block' 
+    gamePage.style.display = 'block' 
+    startPage.style.display = 'none'
+    gameOverPage.style.display = 'none'
+    draw()
+    score.start(printScore);
+ } 
+//Restart function 
+ function restart() {
+    location.reload();
+ }
 
 //--------------
 // Event Listener
 //--------------
 
 window.addEventListener('load', () => {
-    draw()
+     canvas.style.display = 'none'
+     gamePage.style.display = 'none'
+     gameOverPage.style.display = 'none'
+    //draw()
 
     // varible to avoid keydown held press
     let fired = false;
@@ -337,6 +389,15 @@ window.addEventListener('load', () => {
         if (event.code === 'Space'){
             jump = false;
         }
+    })
+
+    
+     startBtn.addEventListener('click', () => {
+         start()
+     })
+
+    restartBtn.addEventListener('click', () => {
+        restart()
     })
 
 
