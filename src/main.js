@@ -70,6 +70,7 @@ let building_1X = 640, building_1Y = 490;
 let building_2X = 750, building_2Y = 490;
 let building_3X = 850, building_3Y = 490;
 let building_4X = 950, building_4Y = 490;
+let building_5X = 1050, building_5Y = 490;
 
 let groundX = 40, groundY = 485;
 // Booleans
@@ -78,59 +79,6 @@ let jump = false;
 let gravity = 0.99  ; // check functionality
 let up = 10 ;
 let down = 3;
-
-//random Buildings to be print
-let buildingsArr = [ building_1, building_2, building_3, building_4 ];
-
-
-
-let randombuilding_1 = buildingsArr[Math.floor( Math.random() * (buildingsArr.length) )]
-
-let randombuilding_2 = buildingsArr[Math.floor( Math.random() * (buildingsArr.length) )]
-
-let randombuilding_3 = buildingsArr[Math.floor( Math.random() * (buildingsArr.length) )]
-
-let randombuilding_4 = buildingsArr[Math.floor( Math.random() * (buildingsArr.length) )]
-
-
-
-
-
-
-
-
-//-------------- test ---------------
-// let randombuilding = buildingsArr[Math.floor( Math.random() * (buildingsArr.length) )]
-
-// function randomArrObs() {
-   
-
-//     for(let i = 0; i < buildingsArr.length; i++){
-//         ctx.drawImage( buildingsArr[i], building_1X , building_1Y )
-//     }
-// }
-
-
-//let randombuildingArr= [randombuilding_1, randombuilding_2, randombuilding_3, randombuilding_4]
-
-// function randomarr() {
-//     for (let n = 0; n < randombuildingArr.lenght; n++){
-//         return randombuildingArr[n]
-//     }
-// }
-
-// let dist = [
-//     {x:340 , y: 490},
-    
-//     {x:590 , y: 490},
-
-//     {x:8040 , y: 490},
-
-//     {x:1200 , y: 490}
-// ]
-
-//-------------- test ---------------
-
 
 
 
@@ -168,7 +116,7 @@ function ninjaJump(){
 //building function
 function Building(){
 
-    building_1X = building_1X - 1
+    building_1X = building_1X - 2
     building_2X = building_2X - 2
     building_3X = building_3X - 2
     building_4X = building_4X - 2
@@ -223,8 +171,17 @@ function printScore() {
     
 }
 
+let buildingsArr = [ 
+    {img: building_1, x:building_1X , y:building_1Y },
+    {img: building_2, x:building_2X , y:building_2Y },
+    {img: building_3, x:building_3X , y:building_3Y },  
+    {img: building_4, x:building_4X , y:building_4Y },
+    {img: building_5, x:building_5X , y:building_5Y }
+];
 
-  
+let buildingImg = [building_1,building_2,building_3,building_4,building_5]
+
+
 
 //Draw function to animate
 function draw(){
@@ -235,51 +192,14 @@ function draw(){
    ctx.drawImage( ninja, ninjaX, ninjaY )
 
 
-//    ctx.drawImage( randombuilding_1, building_1X , building_1Y )
-//    ctx.drawImage( randombuilding_2, building_2X , building_2Y )
-//    ctx.drawImage( randombuilding_3, building_3X , building_3Y ) 
-//    ctx.drawImage( randombuilding_4, building_4X , building_4Y )
-
-    
-   
-   //-------------- test ---------------
-   ctx.drawImage(building_5, building_1X , building_1Y )
-
-   //randomArrObs()
-
-    //Objects and buildings images printed random
-
-        // for( let i = 0; i < randombuildingArr.length; i++ ) {
-        // }
-        //-----------------------------------------------------------------------------
-                
-                    
-
-                // if (randombuilding_1 < 0 || randombuilding_2 < 0  ){
-                // ctx.drawImage( randombuilding_1, building_1X , building_1Y )
-            
-                // }
-
-         //-----------------------------------------------------------------------------
-
-
-                // for( let i = 0; i < dist.length; i++ ) {
-                // ctx.drawImage( randombuilding_1, dist[i].x , dist[i].y )
-                // ctx.drawImage( randombuilding_2, dist[i].x , dist[i].y )
-                // ctx.drawImage( randombuilding_3, dist[i].x , dist[i].y ) 
-                // ctx.drawImage( randombuilding_4, dist[i].x , dist[i].y )
-                //     dist[i].x -= 2
-
-                //     if (dist[i].x < 0) {
-                //         dist[i] = {
-                //             x:800,
-                //             y: 490
-                //         }
-                //     }
-                // }
-    
-
-            //-------------- test ---------------
+for (let i = 0; i < buildingsArr.length; i++){
+    ctx.drawImage( buildingsArr[i].img, buildingsArr[i].x, buildingsArr[i].y )
+    buildingsArr[i].x -= 2
+    if( buildingsArr[i].x < 0 ) {
+        buildingsArr[i].x = building_1X
+        buildingsArr[i].img = buildingImg[Math.floor( Math.random() * (buildingImg.length) )]
+    }
+}
                 
    
     //Graund image
@@ -288,50 +208,48 @@ function draw(){
     //Invoked Functions
     //Ninja jump 
     ninjaJump()
-    //Building movement 
-    Building()
-
-
-
-
+    
     //collision
 
-    // if (ninjaX < building_1X + building_1.width && ninjaX + ninja.width >  building_1X && ninjaY < building_1Y + building_1.height && ninjaY + ninja.height > building_1Y){
-    //     gameOver = true;
-    // }
-
-    if(ninjaX < building_1X + building_5.width && ninjaX >= building_1X && ninjaY < building_1Y ){
-        ninjaY  = (building_5.height)
-
-
-        if (jump){
-            up = up * gravity
-            ninjaY -= up   
-            
-                if (ninjaY < 410){
-                    jump = false;
-                }
-    
-           }else{  
-
-                if (ninjaY < building_1Y){ 
-                    down = down * 1.08  
-                    ninjaY += down 
-                }    
-                 if ( ninjaY > building_1Y - 20){
-                    ninjaY 
-                    down = 3;
-                    up = 10;
-                 }
-           }
-
+    if (ninjaX < building_1X + building_1.width && ninjaX + ninja.width >  building_1X && ninjaY < building_1Y + building_1.height && ninjaY + ninja.height > building_1Y){
+        gameOver = true;
     }
 
-     if (ninjaX < building_1X && ninjaX + ninja.width >  building_1X + 22 && ninjaY < building_1Y + building_5.height && ninjaY + ninja.height > building_1Y){
-    
-            gameOver = true; 
+
+
+     //test collision
+    // if(ninjaX < building_1X + building_5.width && ninjaX >= building_1X && ninjaY < building_1Y ){
+    //     ninjaY  = (building_5.height)
+
+
+    //     if (jump){
+    //         up = up * gravity
+    //         ninjaY -= up   
             
-        }   
+    //             if (ninjaY < 410){
+    //                 jump = false;
+    //             }
+    
+    //        }else{  
+
+    //             if (ninjaY < building_1Y){ 
+    //                 down = down * 1.08  
+    //                 ninjaY += down 
+    //             }    
+    //              if ( ninjaY > building_1Y - 20){
+    //                 ninjaY 
+    //                 down = 3;
+    //                 up = 10;
+    //              }
+    //        }
+
+    // }
+
+    //  if (ninjaX < building_1X && ninjaX + ninja.width >  building_1X + 22 && ninjaY < building_1Y + building_5.height && ninjaY + ninja.height > building_1Y){
+    
+    //         gameOver = true; 
+            
+    //     }   
 
  
     if (gameOver) {
@@ -347,6 +265,10 @@ function draw(){
         intervalId = requestAnimationFrame(draw)
     }   
 }
+
+
+
+    
 
 //Start function 
   function start() {
