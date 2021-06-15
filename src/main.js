@@ -19,9 +19,6 @@ let totalScoreDec = document.querySelector('#total-number-dec')
 let totalScoreUni = document.querySelector('#total-number-uni')
 
 
-
-
-
 //--------------
 //   Images
 //--------------
@@ -50,6 +47,12 @@ building_4.src = '../img/building/obj_4.png'
 let building_5 = new Image();
 building_5.src = '../img/building/obj_5.png'
 
+let building_6 = new Image();
+building_6.src = '../img/building/obj_6.png'
+
+let building_7 = new Image();
+building_7.src = '../img/building/obj_7.png'
+
 //--------------
 //  Audio
 //--------------
@@ -64,13 +67,15 @@ let intervalJumpId = 0;
 let intervalId = 0;
 let gameOver = false;
 // X and Y positions
-let ninjaX = 150, ninjaY = 480;
+let ninjaX = 150, ninjaY = 485;
 
 let building_1X = 640, building_1Y = 490;
 let building_2X = 850, building_2Y = 490;
 let building_3X = 1050, building_3Y = 490;
 let building_4X = 1250, building_4Y = 490;
 let building_5X = 1450, building_5Y = 490;
+let building_6X = 1650, building_6Y = 490;
+let building_7X = 1750, building_7Y = 490;
 
 let groundX = 40, groundY = 485;
 // Booleans
@@ -82,34 +87,78 @@ let down = 3;
 
 
 
-
 //--------------
 // functions
 //--------------
 
 //ninja function
-function ninjaJump(){ 
+// first version
+// function ninjaJump(){ 
     
+//     if (jump){
+//         up = up * gravity
+//         ninjaY -= up   
+        
+//             if (ninjaY < 300){
+//                 jump = false;
+//             }
+
+//        }else{  
+//             if (ninjaY < groundY){ 
+//                 down = down * 1.07
+//                 ninjaY += down 
+//             }    
+//              if ( ninjaY > groundY){
+//                 ninjaY 
+//                 down = 3;
+//                 up = 10;
+//              }
+//        }
+// }
+
+// Ninja jump second version
+function ninjaJump(){ 
     if (jump){
         up = up * gravity
         ninjaY -= up   
         
-            if (ninjaY < 310){
+           if (ninjaY < 300){
                 jump = false;
             }
+    }
 
-       }else{  
+       else{  
             if (ninjaY < groundY){ 
-                down = down * 1.08
-                ninjaY += down 
+                down = down * 1.07
+                ninjaY += down
+                
             }    
-             if ( ninjaY > groundY){
-                ninjaY 
+            
+            if (ninjaY + ninja.height > groundY + 5){
+                ninjaY
                 down = 3;
                 up = 10;
-             }
+             } 
        }
 }
+
+//Start function 
+function start() {
+    canvas.style.display = 'block' 
+    gamePage.style.display = 'block' 
+    startPage.style.display = 'none'
+    gameOverPage.style.display = 'none'
+    draw()
+    score.start(printScore);
+ } 
+
+//Restart function 
+ function restart() {
+    location.reload();
+ }
+
+
+
 
 
 //Class for score
@@ -165,10 +214,12 @@ let buildingsArr = [
     {img: building_2, x:building_2X , y:building_2Y },
     {img: building_3, x:building_3X , y:building_3Y },  
     {img: building_4, x:building_4X , y:building_4Y },
-    {img: building_5, x:building_5X , y:building_5Y }
+    {img: building_5, x:building_5X , y:building_5Y },
+    {img: building_6, x:building_6X , y:building_6Y },
+    {img: building_7, x:building_7X , y:building_7Y }
 ];
 
-let buildingImg = [building_1,building_2,building_3,building_4,building_5]
+let buildingImg = [building_1, building_2, building_3, building_4, building_5, building_6, building_7]
 
 
 
@@ -182,28 +233,73 @@ function draw(){
    ctx.drawImage( ninja, ninjaX, ninjaY )
 
 
-// for (let i = 0; i < buildingsArr.length; i++){
-//     ctx.drawImage( buildingsArr[i].img, buildingsArr[i].x, buildingsArr[i].y )
-//     buildingsArr[i].x -= 2
-//     if( buildingsArr[i].x < 0 ) {
-//         buildingsArr[i].x = building_1X
-//         buildingsArr[i].img = buildingImg[Math.floor( Math.random() * (buildingImg.length) )]
-//     }
-// }
 
-for (let i = 0; i < buildingsArr.length; i++){
-    ctx.drawImage( buildingsArr[i].img, buildingsArr[i].x, buildingsArr[i].y )
+    // 1 Version
+    // for (let i = 0; i < buildingsArr.length; i++){
+    //     ctx.drawImage( buildingsArr[i].img, buildingsArr[i].x, buildingsArr[i].y )
 
-    if (ninjaX < buildingsArr[i].x + buildingsArr[i].img.width && ninjaX + ninja.width > buildingsArr[i].x && ninjaY < buildingsArr[i].y + buildingsArr[i].img.height && ninjaY + ninja.height > buildingsArr[i].y){
-        gameOver = true;
-    }
+    //     //Collision detection
+    //     if (ninjaX < buildingsArr[i].x + buildingsArr[i].img.width && ninjaX + ninja.width > buildingsArr[i].x && ninjaY < buildingsArr[i].y + buildingsArr[i].img.height && ninjaY + ninja.height > buildingsArr[i].y){
+    //         gameOver = true;
+    //     }
     
-    buildingsArr[i].x -= 3
-    if( buildingsArr[i].x < 0 ) {
-        buildingsArr[i].x = building_1X
-        buildingsArr[i].img = buildingImg[Math.floor( Math.random() * (buildingImg.length) )]
+    //     buildingsArr[i].x -= 3
+    //     if( buildingsArr[i].x < 0 ) {
+    //         buildingsArr[i].x = building_1X
+    //         buildingsArr[i].img = buildingImg[Math.floor( Math.random() * (buildingImg.length) )]
+    //     }
+    // }
+    
+    // 2 Version
+    // for (let i = 0; i < buildingsArr.length; i++){
+    //     ctx.drawImage( buildingsArr[i].img, buildingsArr[i].x, buildingsArr[i].y )
+
+    //     //Collision detection
+        
+        
+    //     if (ninjaX < buildingsArr[i].x && ninjaX + ninja.width > buildingsArr[i].x &&  ninjaY + 10 > buildingsArr[i].y){
+    //         gameOver = true;
+    //     }
+       
+    //     buildingsArr[i].x -= 2
+    //     if( buildingsArr[i].x < 0 ) {
+    //         buildingsArr[i].x = building_1X
+    //         buildingsArr[i].img = buildingImg[Math.floor( Math.random() * (buildingImg.length) )]
+    //     }
+    // }
+
+    // 3 Version
+    for (let i = 0; i < buildingsArr.length; i++){
+        ctx.drawImage( buildingsArr[i].img, buildingsArr[i].x, buildingsArr[i].y )
+
+        //Collision detection
+        if (
+            ninjaX < buildingsArr[i].x && 
+            ninjaX + ninja.width > buildingsArr[i].x &&  
+            ninjaY + 10 > buildingsArr[i].y
+            ) {
+
+            gameOver = true;
+        }
+
+        if (
+            ninjaX + ninja.width > buildingsArr[i].x &&
+            ninjaX < buildingsArr[i].x +  buildingsArr[i].img.width &&
+            ninjaY < buildingsArr[i].y + buildingsArr[i].img.height &&
+            ninjaY + ninja.height > buildingsArr[i].y
+          ) {
+            ninjaY = buildingsArr[i].y - ninja.height ;
+          }
+       
+        buildingsArr[i].x -= 3
+        if( buildingsArr[i].x < 0 ) {
+            buildingsArr[i].x = building_1X
+            buildingsArr[i].img = buildingImg[Math.floor( Math.random() * (buildingImg.length) )]
+        }
+        
     }
-}
+
+    
                 
    
     //Graund image
@@ -212,49 +308,6 @@ for (let i = 0; i < buildingsArr.length; i++){
     //Invoked Functions
     //Ninja jump 
     ninjaJump()
-    
-    //collision
-
-
-    // if (ninjaX < building_1X + building_1.width && ninjaX + ninja.width >  building_1X && ninjaY < building_1Y + building_1.height && ninjaY + ninja.height > building_1Y){
-    //     gameOver = true;
-    // }
-
-
-
-     //test collision
-    // if(ninjaX < building_1X + building_5.width && ninjaX >= building_1X && ninjaY < building_1Y ){
-    //     ninjaY  = (building_5.height)
-
-
-    //     if (jump){
-    //         up = up * gravity
-    //         ninjaY -= up   
-            
-    //             if (ninjaY < 410){
-    //                 jump = false;
-    //             }
-    
-    //        }else{  
-
-    //             if (ninjaY < building_1Y){ 
-    //                 down = down * 1.08  
-    //                 ninjaY += down 
-    //             }    
-    //              if ( ninjaY > building_1Y - 20){
-    //                 ninjaY 
-    //                 down = 3;
-    //                 up = 10;
-    //              }
-    //        }
-
-    // }
-
-    //  if (ninjaX < building_1X && ninjaX + ninja.width >  building_1X + 22 && ninjaY < building_1Y + building_5.height && ninjaY + ninja.height > building_1Y){
-    
-    //         gameOver = true; 
-            
-    //     }   
 
  
     if (gameOver) {
@@ -270,24 +323,6 @@ for (let i = 0; i < buildingsArr.length; i++){
         intervalId = requestAnimationFrame(draw)
     }   
 }
-
-
-
-    
-
-//Start function 
-  function start() {
-    canvas.style.display = 'block' 
-    gamePage.style.display = 'block' 
-    startPage.style.display = 'none'
-    gameOverPage.style.display = 'none'
-    draw()
-    score.start(printScore);
- } 
-//Restart function 
- function restart() {
-    location.reload();
- }
 
 //--------------
 // Event Listener
