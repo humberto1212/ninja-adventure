@@ -1,0 +1,14 @@
+#game-over-page{
+margin-left: 650px;
+height: 500px;
+}
+
+
+#game-over-page p {
+    margin-top: 100px;
+}
+
+#restart-btn {
+    margin-top: 100px;
+    margin-left: 60px;
+}

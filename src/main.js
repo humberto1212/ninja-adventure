@@ -145,19 +145,19 @@ function ninjaJump(){
 }
 
 //Start function 
-function start() {
-    canvas.style.display = 'block' 
-    gamePage.style.display = 'block' 
-    startPage.style.display = 'none'
-    gameOverPage.style.display = 'none'
-    draw()
-    score.start(printScore);
- } 
+// function start() {
+//     canvas.style.display = 'block' 
+//     gamePage.style.display = 'block' 
+//     startPage.style.display = 'none'
+//     gameOverPage.style.display = 'none'
+//     draw()
+//     score.start(printScore);
+//  } 
 
 //Restart function 
- function restart() {
-    location.reload();
- }
+//  function restart() {
+//     location.reload();
+//  }
 
 
 
@@ -336,10 +336,9 @@ function draw(){
 //--------------
 
 window.addEventListener('load', () => {
-     canvas.style.display = 'none'
-     gamePage.style.display = 'none'
-     gameOverPage.style.display = 'none'
-    //draw()
+     //canvas.style.display = 'none'
+     //gamePage.style.display = 'none'
+     gameOverPage.style.display = 'block'
 
     // varible to avoid keydown held press
     let fired = false;
