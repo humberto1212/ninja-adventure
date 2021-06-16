@@ -70,12 +70,12 @@ let gameOver = false;
 let ninjaX = 150, ninjaY = 485;
 
 let building_1X = 640, building_1Y = 480;
-let building_2X = 850, building_2Y = 480;
-let building_3X = 1050, building_3Y = 480;
-let building_4X = 1250, building_4Y = 480;
-let building_5X = 1450, building_5Y = 480;
-let building_6X = 1650, building_6Y = 480;
-let building_7X = 1750, building_7Y = 480;
+let building_2X = 950, building_2Y = 460;
+let building_3X = 1250, building_3Y = 470;
+let building_4X = 1550, building_4Y = 430;
+let building_5X = 1750, building_5Y = 460;
+let building_6X = 1950, building_6Y = 440;
+let building_7X = 2250, building_7Y = 460;
 
 let groundX = 40, groundY = 485;
 // Booleans
@@ -115,11 +115,11 @@ let down = 3;
 //              }
 //        }
 // }
-
+let onTopOfBuilding = false;
 // Ninja jump second version
 function ninjaJump(){ 
     if (jump){
-        up = up * gravity
+       up = up * gravity
         ninjaY -= up   
         
            if (ninjaY < 300){
@@ -128,16 +128,18 @@ function ninjaJump(){
     }
 
        else{  
-            if (ninjaY < groundY){ 
+            if (ninjaY < groundY && !onTopOfBuilding){ 
                 down = down * 1.07
                 ninjaY += down
+                console.log('Part 1')
                 
             }    
             
-            if (ninjaY + ninja.height > groundY + 5){
-                ninjaY
-                down = 3;
+            if (ninjaY + ninja.height > groundY ){
+                ninjaY= 485
+                down = 3; 
                 up = 10;
+                console.log('Part 2')
              } 
        }
 }
@@ -288,12 +290,17 @@ function draw(){
             ninjaY < buildingsArr[i].y + buildingsArr[i].img.height &&
             ninjaY + ninja.height > buildingsArr[i].y
           ) {
+            onTopOfBuilding = true
+        
             ninjaY = buildingsArr[i].y - ninja.height ;
+          }
+          if (ninjaX > buildingsArr[i].x + buildingsArr[i].img.width) {
+            onTopOfBuilding = false
           }
        
         buildingsArr[i].x -= 3
         if( buildingsArr[i].x < 0 ) {
-            buildingsArr[i].x = building_1X
+            buildingsArr[i].x = building_7X + 300;
             buildingsArr[i].img = buildingImg[Math.floor( Math.random() * (buildingImg.length) )]
         }
         
@@ -350,6 +357,7 @@ window.addEventListener('load', () => {
         fired = false;
         if (event.code === 'Space'){
             jump = false;
+            onTopOfBuilding = false
         }
     })
 
