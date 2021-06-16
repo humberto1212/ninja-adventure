@@ -69,13 +69,13 @@ let gameOver = false;
 // X and Y positions
 let ninjaX = 150, ninjaY = 485;
 
-let building_1X = 640, building_1Y = 490;
-let building_2X = 850, building_2Y = 490;
-let building_3X = 1050, building_3Y = 490;
-let building_4X = 1250, building_4Y = 490;
-let building_5X = 1450, building_5Y = 490;
-let building_6X = 1650, building_6Y = 490;
-let building_7X = 1750, building_7Y = 490;
+let building_1X = 640, building_1Y = 480;
+let building_2X = 850, building_2Y = 480;
+let building_3X = 1050, building_3Y = 480;
+let building_4X = 1250, building_4Y = 480;
+let building_5X = 1450, building_5Y = 480;
+let building_6X = 1650, building_6Y = 480;
+let building_7X = 1750, building_7Y = 480;
 
 let groundX = 40, groundY = 485;
 // Booleans
