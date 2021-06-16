@@ -36,27 +36,30 @@ let building_1 = new Image();
 building_1.src = '../img/building/obj_1.png'
 
 let building_2 = new Image();
-building_2.src = '../img/building/obj_2.png'
+building_2.src = '../img/building/obj_2.png';
 
 let building_3 = new Image();
-building_3.src = '../img/building/obj_3.png'
+building_3.src = '../img/building/obj_3.png';
 
 let building_4 = new Image();
-building_4.src = '../img/building/obj_4.png'
+building_4.src = '../img/building/obj_4.png';
 
 let building_5 = new Image();
-building_5.src = '../img/building/obj_5.png'
+building_5.src = '../img/building/obj_5.png';
 
 let building_6 = new Image();
-building_6.src = '../img/building/obj_6.png'
+building_6.src = '../img/building/obj_6.png';
 
 let building_7 = new Image();
-building_7.src = '../img/building/obj_7.png'
+building_7.src = '../img/building/obj_7.png';
 
 //--------------
 //  Audio
 //--------------
-
+let gameAudio = new Audio('../sounds/yoitrax-ronin.mp3');
+let gameOverAudio = new Audio('../sounds/purrple-cat-sugar-coat.mp3');
+gameAudio.volume = 0.2;
+gameOverAudio.volume = 0.2;
 
 
 //--------------
@@ -145,19 +148,21 @@ function ninjaJump(){
 }
 
 //Start function 
-// function start() {
-//     canvas.style.display = 'block' 
-//     gamePage.style.display = 'block' 
-//     startPage.style.display = 'none'
-//     gameOverPage.style.display = 'none'
-//     draw()
-//     score.start(printScore);
-//  } 
+function start() {
+    canvas.style.display = 'block' 
+    gamePage.style.display = 'block' 
+    startPage.style.display = 'none'
+    gameOverPage.style.display = 'none'
+    draw()
+    score.start(printScore);
+    gameAudio.play()
+ } 
 
 //Restart function 
-//  function restart() {
-//     location.reload();
-//  }
+ function restart() {
+    location.reload();
+    gameOverAudio.play()
+ }
 
 
 
@@ -324,6 +329,8 @@ function draw(){
         startPage.style.display = 'none'
         gamePage.style.display = 'none'
         score.stop();
+        gameAudio.pause()
+        gameOverAudio.play()
 
         
     }else{
@@ -336,9 +343,9 @@ function draw(){
 //--------------
 
 window.addEventListener('load', () => {
-     //canvas.style.display = 'none'
-     //gamePage.style.display = 'none'
-     gameOverPage.style.display = 'block'
+     canvas.style.display = 'none'
+     gamePage.style.display = 'none'
+     gameOverPage.style.display = 'none'
 
     // varible to avoid keydown held press
     let fired = false;
