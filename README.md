@@ -9,5 +9,3 @@
 # Task
 
 # Links
-https://humberto1212.github.io/ninja-adventure/
-
