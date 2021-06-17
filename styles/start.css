@@ -3,20 +3,25 @@
     justify-content:space-evenly;
     background-color: #ED6549;
     height: 1200px;
+    background-image: url("../img/background/background-start.png"); 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 0px -200px
 }
 
 .title-container {
-    margin-right: 100px;
+    margin-right: 500px;
+    
 }
 
 .game-title {
-    margin-left: -100px;
     margin-top: 150px;
     align-items: center;
     font-weight: 900;
     font-size: 52px;
     -webkit-text-stroke: 2px white;
     text-shadow: 0 2px white, 0 4.5px #777;
+   
 }
 
 .instructions-flex{
@@ -25,6 +30,7 @@
     justify-content: space-around;
     -webkit-text-stroke: 1.5px black;
     width: 1000px;
+    margin-right: 400px;
     background-image: url("../img/background/transparent_start_1.png");
 }
 
