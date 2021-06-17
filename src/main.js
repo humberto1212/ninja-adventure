@@ -6,17 +6,17 @@
 //Canvas
 let canvas = document.querySelector('canvas');
 //Pages
-let startPage = document.querySelector('#start-page')
-let gamePage = document.querySelector('#game-page')
-let gameOverPage = document.querySelector('#game-over-page')
+let startPage = document.querySelector('#start-page');
+let gamePage = document.querySelector('#game-page');
+let gameOverPage = document.querySelector('#game-over-page');
 //Buttons
-let startBtn = document.querySelector('#start-btn')
-let restartBtn = document.querySelector('#restart-btn')
+let startBtn = document.querySelector('#start-btn');
+let restartBtn = document.querySelector('#restart-btn');
 //Dom score
-let gameScoreDec = document.querySelector('#score-number-dec')
-let gameScoreUni = document.querySelector('#score-number-uni')
-let totalScoreDec = document.querySelector('#total-number-dec')
-let totalScoreUni = document.querySelector('#total-number-uni')
+let gameScoreDec = document.querySelector('#score-number-dec');
+let gameScoreUni = document.querySelector('#score-number-uni');
+let totalScoreDec = document.querySelector('#total-number-dec');
+let totalScoreUni = document.querySelector('#total-number-uni');
 
 
 //--------------
@@ -24,40 +24,40 @@ let totalScoreUni = document.querySelector('#total-number-uni')
 //--------------
 
 let ground = new Image();
-ground.src  = '../img/background/ground.png'
+ground.src  = './img/background/ground.png'
 
 let sun = new Image();
-sun.src  = '../img/background/sun.png'
+sun.src  = './img/background/sun.png'
 
 let ninja = new Image();
-ninja.src = '../img/ninja/ninja-jump2.png'
+ninja.src = './img/ninja/ninja-jump2.png'
 
 // Buildings images
 let building_1 = new Image();
-building_1.src = '../img/building/building1-removebg-preview.png'
+building_1.src = './img/building/building1-removebg-preview.png'
 let building_2 = new Image();
-building_2.src = '../img/building/building2-removebg-preview.png';
+building_2.src = './img/building/building2-removebg-preview.png';
 let building_3 = new Image();
-building_3.src = '../img/building/building3-removebg-preview.png';
+building_3.src = './img/building/building3-removebg-preview.png';
 let building_4 = new Image();
-building_4.src = '../img/building/building4-removebg-preview.png';
+building_4.src = './img/building/building4-removebg-preview.png';
 let building_5 = new Image();
-building_5.src = '../img/building/building5-removebg-preview.png';
+building_5.src = './img/building/building5-removebg-preview.png';
 
 // Trees images
 let tree1 = new Image();
-tree1.src = '../img/background/tree1.png';
+tree1.src = './img/background/tree1.png';
 let tree2 = new Image();
-tree2.src = '../img/background/tree2.png';
+tree2.src = './img/background/tree2.png';
 let tree3 = new Image();
-tree3.src = '../img/background/tree3.png';
+tree3.src = './img/background/tree3.png';
 
 
 //--------------
 //  Audio
 //--------------
-let gameAudio = new Audio('../sounds/yoitrax-ronin.mp3');
-let gameOverAudio = new Audio('../sounds/purrple-cat-sugar-coat.mp3');
+let gameAudio = new Audio('./sounds/yoitrax-ronin.mp3');
+let gameOverAudio = new Audio('./sounds/purrple-cat-sugar-coat.mp3');
 gameAudio.volume = 0.2;
 gameOverAudio.volume = 0.2;
 
@@ -122,9 +122,8 @@ let buildingImg = [building_1, building_2, building_3, building_4, building_5]
 // functions
 //--------------
 
-
 let onTopOfBuilding = false;
-// Ninja jump second version
+// Ninja jump 
 function ninjaJump(){ 
     if (jump){
        up = up * gravity
@@ -167,10 +166,6 @@ function start() {
     gameOverAudio.play()
  }
 
-
-
-
-
 //Class for score
 class time {
     constructor() {
@@ -178,39 +173,39 @@ class time {
      this.intervalId = null;
     }
   
-    start(callback) {
+    start( callback ) {
         
         this.intervalId = setInterval(() => { 
         this.currentTime += 1
           
-        if(callback !== null){
+        if( callback !== null ){
           callback();
         }
-      }, 1000);
+      }, 1000 );
    
     }
 
     getSeconds() {
-        return Number(this.currentTime);
+        return Number( this.currentTime );
       }
 
-      computeManyDigitNumber(value) {
+      computeManyDigitNumber( value ) {
     
-        if(value < 10){
-            return '0' + value
+        if( value < 10 ){
+            return '0' + value;
           }else {
-            return '' + value
+            return '' + value;
           }
       }
 
       stop() {
-        clearInterval(this.intervalId)
+        clearInterval( this.intervalId );
       }
 }
 const score =  new time(); // this const belongs to the class time
 
 function printScore() {
-    let seconds = score.computeManyDigitNumber(score.getSeconds())
+    let seconds = score.computeManyDigitNumber( score.getSeconds() );
     gameScoreUni.innerHTML = seconds[1];
     gameScoreDec.innerHTML = seconds[0];
     totalScoreUni.innerHTML = seconds[1];
@@ -228,7 +223,7 @@ function draw(){
 
     //trees and clouds
     speedTree *= 1.0004 // Speed of trees
-    for (let i = 0; i < treeArr.length; i++){
+    for ( let i = 0; i < treeArr.length; i++ ){
         ctx.drawImage( treeArr[i].img, treeArr[i].x, treeArr[i].y )
          
         treeArr[i].x -= speedTree
@@ -239,52 +234,14 @@ function draw(){
     }
 
     //Ninja image
-   ctx.drawImage( ninja, ninjaX, ninjaY )
+   ctx.drawImage( ninja, ninjaX, ninjaY );
 
 
-
-    // 1 Version
-    // for (let i = 0; i < buildingsArr.length; i++){
-    //     ctx.drawImage( buildingsArr[i].img, buildingsArr[i].x, buildingsArr[i].y )
-
-    //     //Collision detection
-    //     if (ninjaX < buildingsArr[i].x + buildingsArr[i].img.width && ninjaX + ninja.width > buildingsArr[i].x && ninjaY < buildingsArr[i].y + buildingsArr[i].img.height && ninjaY + ninja.height > buildingsArr[i].y){
-    //         gameOver = true;
-    //     }
-    
-    //     buildingsArr[i].x -= 3
-    //     if( buildingsArr[i].x < 0 ) {
-    //         buildingsArr[i].x = building_1X
-    //         buildingsArr[i].img = buildingImg[Math.floor( Math.random() * (buildingImg.length) )]
-    //     }
-    // }
-    
-    // 2 Version
-    // for (let i = 0; i < buildingsArr.length; i++){
-    //     ctx.drawImage( buildingsArr[i].img, buildingsArr[i].x, buildingsArr[i].y )
-
-    //     //Collision detection
-        
-        
-    //     if (ninjaX < buildingsArr[i].x && ninjaX + ninja.width > buildingsArr[i].x &&  ninjaY + 10 > buildingsArr[i].y){
-    //         gameOver = true;
-    //     }
-       
-    //     buildingsArr[i].x -= 2
-    //     if( buildingsArr[i].x < 0 ) {
-    //         buildingsArr[i].x = building_1X
-    //         buildingsArr[i].img = buildingImg[Math.floor( Math.random() * (buildingImg.length) )]
-    //     }
-    // }
-
-
-
-
-    // 3 Version
+    //Buildings
     speed *= 1.00045 // Speed of objects
 
-    for (let i = 0; i < buildingsArr.length; i++){
-        ctx.drawImage( buildingsArr[i].img, buildingsArr[i].x, buildingsArr[i].y )
+    for ( let i = 0; i < buildingsArr.length; i++) {
+        ctx.drawImage( buildingsArr[i].img, buildingsArr[i].x, buildingsArr[i].y );
 
         //Collision detection
         if (
@@ -314,16 +271,11 @@ function draw(){
 
          
         buildingsArr[i].x -= speed
-        if( buildingsArr[i].x < 0 ) {
+        if ( buildingsArr[i].x < 0 ) {
             buildingsArr[i].x = building_5X + 750;
             buildingsArr[i].img = buildingImg[Math.floor( Math.random() * (buildingImg.length) )]
-        }
-    
-        
-    }
-
-    
-                
+        }  
+    }           
    
     //Graund image
     ctx.drawImage( ground, groundX, groundY)
@@ -332,20 +284,18 @@ function draw(){
     //Ninja jump 
     ninjaJump()
 
- 
-    if (gameOver) {
+    if ( gameOver ) {
         cancelAnimationFrame(intervalId)
-        gameOverPage.style.display = 'block'
-        canvas.style.display = 'none'
-        startPage.style.display = 'none'
-        gamePage.style.display = 'none'
+        gameOverPage.style.display = 'block';
+        canvas.style.display = 'none';
+        startPage.style.display = 'none';
+        gamePage.style.display = 'none';
         score.stop();
-        gameAudio.pause()
-        gameOverAudio.play()
+        gameAudio.pause();
+        gameOverAudio.play();
 
-        
     }else{
-        intervalId = requestAnimationFrame(draw)
+        intervalId = requestAnimationFrame( draw );
     }   
 }
 
@@ -353,39 +303,37 @@ function draw(){
 // Event Listener
 //--------------
 
-window.addEventListener('load', () => {
-     canvas.style.display = 'none'
-     gamePage.style.display = 'none'
-     gameOverPage.style.display = 'none'
+window.addEventListener( 'load', () => {
+     canvas.style.display = 'none';
+     gamePage.style.display = 'none';
+     gameOverPage.style.display = 'none';
 
     // varible to avoid keydown held press
     let fired = false;
-    document.addEventListener('keydown', (event) => {
-        if(!fired) {
+    document.addEventListener( 'keydown', ( event ) => {
+        if( !fired ) {
             fired = true;
            
-            if (event.code === 'Space') {
+            if ( event.code === 'Space' ) {
                 jump = true; 
             }
         }
     })
 
-    document.addEventListener('keyup', (event) => {
+    document.addEventListener( 'keyup', ( event ) => {
         fired = false;
-        if (event.code === 'Space'){
+        if ( event.code === 'Space' ){
             jump = false;
             onTopOfBuilding = false
         }
     })
 
     
-     startBtn.addEventListener('click', () => {
+     startBtn.addEventListener( 'click', () => {
          start()
      })
 
-    restartBtn.addEventListener('click', () => {
+    restartBtn.addEventListener( 'click', () => {
         restart()
     })
-
-
 })
