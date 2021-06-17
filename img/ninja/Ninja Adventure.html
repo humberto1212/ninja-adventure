@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://127.0.0.1:5500/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Adventure</title>
+    
+    <style>@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&family=Cormorant+Garamond:wght@500&family=Spartan:wght@300&display=swap');</style>
+<link rel="stylesheet" href="./Ninja Adventure_files/main.css"></head>
+<body data-new-gr-c-s-check-loaded="14.1015.0" data-gr-ext-installed="">
+    <!-- Start Page-->
+
+    <main id="start-page">
+
+        <div class="title-container">
+            <h1 class="game-title">N<br>I<br>N<br>J<br>A<br><br>A<br>D<br>V<br>E<br>N<br>T<br>U<br>R<br>E</h1>
+        </div>
+
+        
+
+        <div class="instructions-flex">
+            <div class="instruction-container">
+
+                <h2 class="instruction">Instructions</h2>
+
+            </div>
+
+
+            <div class="explenation-container">
+
+                <h3>Jump over obstacles and avoid hitting walls</h3>
+                <p>Press Key to jump</p>
+
+            </div>
+       
+
+            <button id="start-btn">START THE GAME</button>
+
+        </div>
+
+    </main>
+
+    <!--Game Page-->
+    <main id="game-page" style="display: none;">
+        <div id="ninja">
+            <h1>N<br><br>I<br><br>N<br><br>J<br><br>A</h1>  
+        </div>
+
+        <div id="time-score">
+            <p>Score: <span id="score-number-dec">0</span><span id="score-number-uni">0</span></p>        
+        </div>
+
+        <div id="canvas-container">
+            <canvas id="canvas" width="735" height="665" style="display: none;"></canvas>
+        </div>
+        
+
+    </main>
+
+    <!--Restart Game Page-->
+    <main id="game-over-page" style="display: none;">
+        
+        <h1>Game Over</h1>
+
+        <p> you made <span id="total-number-dec">0</span><span id="total-number-uni">0</span> points!!</p>
+
+        <button id="restart-btn">Try again</button>
+        
+    </main>
+
+    
+    <!--scripts-->
+    <script src="./Ninja Adventure_files/main.js"></script>
+
+<!-- Code injected by live-server -->
+<script type="text/javascript">
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body></html>
