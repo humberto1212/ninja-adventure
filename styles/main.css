@@ -13,7 +13,7 @@ html, body {
 #ninja{
     position: relative;
     left: 110px;
-    top: 50px;
+    top: 20px;
     font-size: 53px;
     color: #E8AB94;
     text-shadow: 4px 4px 10px rgba(225, 63, 30, 0.6), -4px -4px 10px rgba(236, 174, 151, 0.5);  
