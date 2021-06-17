@@ -23,6 +23,17 @@ let totalScoreUni = document.querySelector('#total-number-uni')
 //   Images
 //--------------
 
+//------------------- test -------------------
+
+// let ninja = new Image();
+// ninja.src = '../img/ninja/ninja_ani4.png'
+
+
+//------------------- test -------------------
+
+
+
+
 let ground = new Image();
 ground.src  = '../img/background/ground.png'
 
@@ -30,28 +41,26 @@ let sun = new Image();
 sun.src  = '../img/background/sun.png'
 
 let ninja = new Image();
-ninja.src = '../img/ninja/ninja.png'
+ninja.src = '../img/ninja/ninja-jump2.png'
 
+// Buildings images
 let building_1 = new Image();
-building_1.src = '../img/building/obj_1.png'
-
+building_1.src = '../img/building/building1-removebg-preview.png'
 let building_2 = new Image();
-building_2.src = '../img/building/obj_2.png';
-
+building_2.src = '../img/building/building2-removebg-preview.png';
 let building_3 = new Image();
-building_3.src = '../img/building/obj_3.png';
-
+building_3.src = '../img/building/building3-removebg-preview.png';
 let building_4 = new Image();
-building_4.src = '../img/building/obj_4.png';
+building_4.src = '../img/building/building4-removebg-preview.png';
 
-let building_5 = new Image();
-building_5.src = '../img/building/obj_5.png';
+// Trees images
+let tree1 = new Image();
+tree1.src = '../img/background/tree1.png';
+let tree2 = new Image();
+tree2.src = '../img/background/tree2.png';
+let tree3 = new Image();
+tree3.src = '../img/background/tree3.png';
 
-let building_6 = new Image();
-building_6.src = '../img/building/obj_6.png';
-
-let building_7 = new Image();
-building_7.src = '../img/building/obj_7.png';
 
 //--------------
 //  Audio
@@ -72,13 +81,18 @@ let gameOver = false;
 // X and Y positions
 let ninjaX = 150, ninjaY = 485;
 
-let building_1X = 640, building_1Y = 480;
-let building_2X = 950, building_2Y = 460;
-let building_3X = 1250, building_3Y = 470;
-let building_4X = 1550, building_4Y = 430;
-let building_5X = 1750, building_5Y = 460;
-let building_6X = 1950, building_6Y = 440;
-let building_7X = 2250, building_7Y = 460;
+let tree1X = 800 , tree1Y = 410;
+let tree2X = 1500 , tree2Y = 410;
+let tree3X = 2000 , tree3Y = 410;
+
+
+let building_1X = 640, building_1Y = 420;
+let building_2X = 1350, building_2Y = 430;
+let building_3X = 1750, building_3Y = 423;
+let building_4X = 2100, building_4Y = 420;
+// let building_5X = 1750, building_5Y = 460;
+// let building_6X = 1950, building_6Y = 440;
+// let building_7X = 2250, building_7Y = 460;
 
 let groundX = 40, groundY = 485;
 // Booleans
@@ -87,8 +101,31 @@ let jump = false;
 let gravity = 0.99  ; // check functionality
 let up = 10 ;
 let down = 3;
+//speed of objects
+let speed = 2;
+let speedTree = 1;
 
+//arr of trees
+let treeArr = [
+    {img: tree1, x:tree1X , y:tree1Y },
+    {img: tree2, x:tree2X , y:tree2Y },
+    {img: tree3, x:tree3X , y:tree3Y },  
+]
 
+let treeImg = [tree1,tree2, tree3]
+
+//arr of buildings
+let buildingsArr = [ 
+    {img: building_1, x:building_1X , y:building_1Y },
+    {img: building_2, x:building_2X , y:building_2Y },
+    {img: building_3, x:building_3X , y:building_3Y },  
+    {img: building_4, x:building_4X , y:building_4Y },
+    // {img: building_5, x:building_5X , y:building_5Y },
+    // {img: building_6, x:building_6X , y:building_6Y },
+    // {img: building_7, x:building_7X , y:building_7Y }
+];
+
+let buildingImg = [building_1, building_2, building_3, building_4]
 
 //--------------
 // functions
@@ -125,24 +162,22 @@ function ninjaJump(){
        up = up * gravity
         ninjaY -= up   
         
-           if (ninjaY < 300){
+           if (ninjaY < 320){
                 jump = false;
             }
     }
 
        else{  
             if (ninjaY < groundY && !onTopOfBuilding){ 
-                down = down * 1.07
-                ninjaY += down
-                console.log('Part 1')
-                
+                down = down * 1.09
+                ninjaY += down  
             }    
             
-            if (ninjaY + ninja.height > groundY ){
+            if (ninjaY + ninja.height > groundY){
                 ninjaY= 485
                 down = 3; 
                 up = 10;
-                console.log('Part 2')
+              
              } 
        }
 }
@@ -204,8 +239,7 @@ class time {
         clearInterval(this.intervalId)
       }
 }
-
-const score =  new time();
+const score =  new time(); // this const belongs to the class time
 
 function printScore() {
     let seconds = score.computeManyDigitNumber(score.getSeconds())
@@ -216,25 +250,49 @@ function printScore() {
     
 }
 
-let buildingsArr = [ 
-    {img: building_1, x:building_1X , y:building_1Y },
-    {img: building_2, x:building_2X , y:building_2Y },
-    {img: building_3, x:building_3X , y:building_3Y },  
-    {img: building_4, x:building_4X , y:building_4Y },
-    {img: building_5, x:building_5X , y:building_5Y },
-    {img: building_6, x:building_6X , y:building_6Y },
-    {img: building_7, x:building_7X , y:building_7Y }
-];
-
-let buildingImg = [building_1, building_2, building_3, building_4, building_5, building_6, building_7]
 
 
 
+
+//  ------------  Animation test --------------
+// const spritewidth =  74.5
+// const spriteHeigh = 120
+// let frameX = 0;
+// let frameY = 0;
+//  ------------  Animation test --------------
 
 //Draw function to animate
 function draw(){
+
     //Background image
     ctx.drawImage( sun, -25, -20 )
+
+    //trees and clouds
+    speedTree *= 1.0004 // Speed of trees
+    for (let i = 0; i < treeArr.length; i++){
+        ctx.drawImage( treeArr[i].img, treeArr[i].x, treeArr[i].y )
+         
+        treeArr[i].x -= speedTree
+        if( treeArr[i].x < 0 ) {
+            treeArr[i].x = tree3X + 900;
+            treeArr[i].img = treeImg[Math.floor( Math.random() * (treeImg.length) )]
+        }
+    }
+
+
+
+
+    // ------------- test animation --------------
+    // ctx.drawImage(ninja, frameX * spritewidth, frameY * spriteHeigh, spritewidth, spriteHeigh, ninjaX, ninjaY, spritewidth, spriteHeigh )
+
+    // if (frameX < 8) {
+    //     frameX++
+    // }else{
+    //     frameX = 0
+    // }
+
+      // ------------- test animation --------------
+
 
     //Ninja image
    ctx.drawImage( ninja, ninjaX, ninjaY )
@@ -275,7 +333,12 @@ function draw(){
     //     }
     // }
 
+
+
+
     // 3 Version
+    speed *= 1.00045 // Speed of objects
+
     for (let i = 0; i < buildingsArr.length; i++){
         ctx.drawImage( buildingsArr[i].img, buildingsArr[i].x, buildingsArr[i].y )
 
@@ -283,7 +346,7 @@ function draw(){
         if (
             ninjaX < buildingsArr[i].x && 
             ninjaX + ninja.width > buildingsArr[i].x &&  
-            ninjaY + 10 > buildingsArr[i].y
+            ninjaY + 15 > buildingsArr[i].y
             ) {
 
             gameOver = true;
@@ -297,17 +360,21 @@ function draw(){
           ) {
             onTopOfBuilding = true
         
-            ninjaY = buildingsArr[i].y - ninja.height ;
+            ninjaY = buildingsArr[i].y - ninja.height;
           }
           if (ninjaX > buildingsArr[i].x + buildingsArr[i].img.width) {
             onTopOfBuilding = false
           }
        
-        buildingsArr[i].x -= 3
+          
+
+         
+        buildingsArr[i].x -= speed
         if( buildingsArr[i].x < 0 ) {
-            buildingsArr[i].x = building_7X + 300;
+            buildingsArr[i].x = building_4X + 600;
             buildingsArr[i].img = buildingImg[Math.floor( Math.random() * (buildingImg.length) )]
         }
+    
         
     }
 
