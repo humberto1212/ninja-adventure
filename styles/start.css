@@ -3,7 +3,7 @@
     justify-content:space-evenly;
     background-color: #ED6549;
     height: 1350px;
-    background-image: url("../img/background/background-start.png"); 
+    background-image: url("../img/background/Background&words.png"); 
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: 0px -200px
@@ -37,7 +37,7 @@
 }
 
 .instruction {
-    margin-left: 200px;
+    margin-left: 180px;
     font-size: 42px;
 }
 
@@ -48,12 +48,12 @@
 }
 
 .explenation-container h3 {
-    margin-left: 10px;
+    margin-right: 120px;
 }
 
 
 .explenation-container p {
-    margin-left: 240px;
+    margin-left: 150px;
 }
 
 #start-btn{
@@ -64,4 +64,9 @@
     width: 250px;
     height: 60px;
     font-size: 24px;
+}
+
+#start-btn:hover {
+    width: 260px;
+    height: 70px;
 }
