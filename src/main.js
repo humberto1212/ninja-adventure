@@ -23,17 +23,6 @@ let totalScoreUni = document.querySelector('#total-number-uni')
 //   Images
 //--------------
 
-//------------------- test -------------------
-
-// let ninja = new Image();
-// ninja.src = '../img/ninja/ninja_ani4.png'
-
-
-//------------------- test -------------------
-
-
-
-
 let ground = new Image();
 ground.src  = '../img/background/ground.png'
 
@@ -52,6 +41,8 @@ let building_3 = new Image();
 building_3.src = '../img/building/building3-removebg-preview.png';
 let building_4 = new Image();
 building_4.src = '../img/building/building4-removebg-preview.png';
+let building_5 = new Image();
+building_5.src = '../img/building/building5-removebg-preview.png';
 
 // Trees images
 let tree1 = new Image();
@@ -90,7 +81,7 @@ let building_1X = 640, building_1Y = 420;
 let building_2X = 1350, building_2Y = 430;
 let building_3X = 1750, building_3Y = 423;
 let building_4X = 2100, building_4Y = 420;
-// let building_5X = 1750, building_5Y = 460;
+let building_5X = 2500, building_5Y = 460;
 // let building_6X = 1950, building_6Y = 440;
 // let building_7X = 2250, building_7Y = 460;
 
@@ -120,41 +111,18 @@ let buildingsArr = [
     {img: building_2, x:building_2X , y:building_2Y },
     {img: building_3, x:building_3X , y:building_3Y },  
     {img: building_4, x:building_4X , y:building_4Y },
-    // {img: building_5, x:building_5X , y:building_5Y },
+    {img: building_5, x:building_5X , y:building_5Y },
     // {img: building_6, x:building_6X , y:building_6Y },
     // {img: building_7, x:building_7X , y:building_7Y }
 ];
 
-let buildingImg = [building_1, building_2, building_3, building_4]
+let buildingImg = [building_1, building_2, building_3, building_4, building_5]
 
 //--------------
 // functions
 //--------------
 
-//ninja function
-// first version
-// function ninjaJump(){ 
-    
-//     if (jump){
-//         up = up * gravity
-//         ninjaY -= up   
-        
-//             if (ninjaY < 300){
-//                 jump = false;
-//             }
 
-//        }else{  
-//             if (ninjaY < groundY){ 
-//                 down = down * 1.07
-//                 ninjaY += down 
-//             }    
-//              if ( ninjaY > groundY){
-//                 ninjaY 
-//                 down = 3;
-//                 up = 10;
-//              }
-//        }
-// }
 let onTopOfBuilding = false;
 // Ninja jump second version
 function ninjaJump(){ 
@@ -162,7 +130,7 @@ function ninjaJump(){
        up = up * gravity
         ninjaY -= up   
         
-           if (ninjaY < 320){
+           if (ninjaY < 310){
                 jump = false;
             }
     }
@@ -252,15 +220,6 @@ function printScore() {
 
 
 
-
-
-//  ------------  Animation test --------------
-// const spritewidth =  74.5
-// const spriteHeigh = 120
-// let frameX = 0;
-// let frameY = 0;
-//  ------------  Animation test --------------
-
 //Draw function to animate
 function draw(){
 
@@ -274,25 +233,10 @@ function draw(){
          
         treeArr[i].x -= speedTree
         if( treeArr[i].x < 0 ) {
-            treeArr[i].x = tree3X + 900;
+            treeArr[i].x = tree3X + 700;
             treeArr[i].img = treeImg[Math.floor( Math.random() * (treeImg.length) )]
         }
     }
-
-
-
-
-    // ------------- test animation --------------
-    // ctx.drawImage(ninja, frameX * spritewidth, frameY * spriteHeigh, spritewidth, spriteHeigh, ninjaX, ninjaY, spritewidth, spriteHeigh )
-
-    // if (frameX < 8) {
-    //     frameX++
-    // }else{
-    //     frameX = 0
-    // }
-
-      // ------------- test animation --------------
-
 
     //Ninja image
    ctx.drawImage( ninja, ninjaX, ninjaY )
@@ -345,8 +289,8 @@ function draw(){
         //Collision detection
         if (
             ninjaX < buildingsArr[i].x && 
-            ninjaX + ninja.width > buildingsArr[i].x &&  
-            ninjaY + 15 > buildingsArr[i].y
+            (ninjaX + ninja.width) - 1.5 > buildingsArr[i].x &&  
+            ninjaY > buildingsArr[i].y
             ) {
 
             gameOver = true;
@@ -371,7 +315,7 @@ function draw(){
          
         buildingsArr[i].x -= speed
         if( buildingsArr[i].x < 0 ) {
-            buildingsArr[i].x = building_4X + 600;
+            buildingsArr[i].x = building_5X + 750;
             buildingsArr[i].img = buildingImg[Math.floor( Math.random() * (buildingImg.length) )]
         }
     
