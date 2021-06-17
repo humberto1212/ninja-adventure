@@ -174,7 +174,7 @@ function ninjaJump(){
             }    
             
             if (ninjaY + ninja.height > groundY){
-                ninjaY= 485
+                ninjaY = 485
                 down = 3; 
                 up = 10;
               
