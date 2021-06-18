@@ -1,6 +1,6 @@
 # Ninja Adventure
 ## Description
-Be a ninja! 🥷🏽
+Be a ninja! 🥷🏽 <br/>
 Jump and run over different buildings, but be careful, your speed will progressively increase and you may hit a wall.
 Use **SPACE** to jump. Sometimes you may feel like you can fly but gravity plays an important role in this game so calculate well when jumping.
 
@@ -51,7 +51,7 @@ draw()
 * Increase speed
 * Add music
 
-## Image
+## Game Image
 
 <img width="450" alt="ninja game image" src="./img/background/Captura de Pantalla 2021-06-17 a la(s) 6.58.07 p. m.png">
 
