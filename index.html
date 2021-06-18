@@ -3,75 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9">
     <title>Ninja Adventure</title>
     <link rel="stylesheet" href="./styles/main.css">
     <style>@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&family=Cormorant+Garamond:wght@500&family=Spartan:wght@300&display=swap');</style>
 </head>
 <body>
     <!-- Start Page-->
-
     <main id="start-page">
-
         <div class="title-container">
             <h1 class="game-title">N<br>I<br>N<br>J<br>A<br><br>A<br>D<br>V<br>E<br>N<br>T<br>U<br>R<br>E</h1>
         </div>
-
-        
-
         <div class=instructions-flex>
             <div class="instruction-container">
-
                 <h2 class="instruction">Instructions</h2>
-
             </div>
-
-
             <div class="explenation-container">
-
                 <h3>Jump over obstacles and avoid hitting walls</h3>
                 <p>Press <img src="./img/background/space.png" alt="space key"> to jump</p>
-
             </div>
-       
-
             <button id="start-btn">START THE GAME</button>
-
         </div>
-
     </main>
-
     <!--Game Page-->
     <main id="game-page">
         <div id="ninja">
             <h1>N<br><br>I<br><br>N<br><br>J<br><br>A</h1>  
         </div>
-
         <div id="time-score">
             <p>Score: <span id="score-number-dec" >0</span><span id="score-number-uni" >0</span></p>        
         </div>
-
-        <div id="canvas-container">
+        <div>
             <canvas id="canvas" width="735" height="665"></canvas>
         </div>
-        
-
     </main>
-
     <!--Restart Game Page-->
-    <main id="game-over-page">
-        
+    <main id="game-over-page">   
         <h1>Game Over</h1>
-
         <p> you made <span id="total-number-dec" >0</span><span id="total-number-uni" >0</span> points!!</p>
-
-        <button id="restart-btn">Try again</button>
-        
+        <button id="restart-btn">Try again</button>    
     </main>
-
-    
     <!--scripts-->
     <script src='./src/main.js'></script>
-
 </body>
 </html>

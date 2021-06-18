@@ -2,66 +2,69 @@
     display: flex;
     justify-content:space-evenly;
     background-color: #ED6549;
-    height: 1349px;
     background-image: url("../img/background/Background&words.png"); 
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: 0px -200px
+    background-size: 2250px;
+    background-position: 0px -200px;
+    height: 890px;
 }
 
 .title-container {
-    margin-right: 100px;
+  margin-left: 150px;
 }
 
 .game-title {
-    margin-left: -80px;
-    margin-top: 150px;
+    margin-left: -100px;
+    margin-top: 20px;
     align-items: center;
     font-weight: 900;
-    font-size: 62px;
-    -webkit-text-stroke: 4px black;
+    font-size: 36px;
+    -webkit-text-stroke: 3px black;
     text-shadow: 0 2px white, 0 4.5px #777;
-
 }
 
 
 .instructions-flex{
     display: flex;
+    gap: 10%;
     flex-direction: column;
-    justify-content: space-around;
-    margin-right: 200px;
+    justify-content: flex-start;
     -webkit-text-stroke: 1.9px black;
-    width: 1050px;
+    width: 750px;
+    margin: 90px;
+    margin-top: 0px;
+    margin-top: 50px; 
 }
 
-.instruction {
-    margin-left: 220px;
+.instructions-flex h2{
     font-size: 42px;
+    margin-left: 50px;
 }
 
-.explenation-container {
-    margin-right: 70px;
-   margin-top: 10px;
-   font-size: 32px;
+
+.explenation-container { 
+   font-size: 24px;
+  
 }
 
 .explenation-container h3 {
-    margin-right: 120px;
+   margin-left: -80px;
+   font-size: 24px;
 }
 
 
 .explenation-container p {
-    margin-left: 150px;
+    margin-right: 40px;
 }
 
 #start-btn{
     background: #FFFFFF;
     box-shadow: -4px -4px 10px rgba(232, 171, 148, 0.5), 4px 4px 10px rgba(225, 63, 30, 0.5);    border-radius: 32px;
-    margin-left: 220px;
-    margin-bottom: 50px;
     width: 250px;
     height: 60px;
     font-size: 24px;
+    margin-left: 40px;
 }
 
 #start-btn:hover {
