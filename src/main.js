@@ -22,7 +22,6 @@ let totalScoreUni = document.querySelector('#total-number-uni');
 //--------------
 //   Images
 //--------------
-
 let ground = new Image();
 ground.src  = './img/background/ground.png'
 
@@ -96,7 +95,7 @@ let down = 3;
 let speed = 2;
 let speedTree = 1;
 
-//arr of trees
+//Arr of trees
 let treeArr = [
     {img: tree1, x:tree1X , y:tree1Y },
     {img: tree2, x:tree2X , y:tree2Y },
@@ -105,7 +104,7 @@ let treeArr = [
 
 let treeImg = [tree1,tree2, tree3]
 
-//arr of buildings
+//Arr of buildings
 let buildingsArr = [ 
     {img: building_1, x:building_1X , y:building_1Y },
     {img: building_2, x:building_2X , y:building_2Y },
@@ -121,7 +120,6 @@ let buildingImg = [building_1, building_2, building_3, building_4, building_5]
 //--------------
 // functions
 //--------------
-
 let onTopOfBuilding = false;
 // Ninja jump 
 function ninjaJump(){ 
@@ -236,7 +234,6 @@ function draw(){
     //Ninja image
    ctx.drawImage( ninja, ninjaX, ninjaY );
 
-
     //Buildings
     speed *= 1.00045 // Speed of objects
 
@@ -267,9 +264,6 @@ function draw(){
             onTopOfBuilding = false
           }
        
-          
-
-         
         buildingsArr[i].x -= speed
         if ( buildingsArr[i].x < 0 ) {
             buildingsArr[i].x = building_5X + 750;
@@ -327,8 +321,7 @@ window.addEventListener( 'load', () => {
             onTopOfBuilding = false
         }
     })
-
-    
+ 
      startBtn.addEventListener( 'click', () => {
          start()
      })
