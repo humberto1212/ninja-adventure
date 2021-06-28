@@ -18,6 +18,8 @@ Use **SPACE** to jump. Sometimes you may feel like you can fly but gravity plays
 # Data Structure
 ## main.js
 ```
+ninjaAnimation()
+
 ninjaJump();
 
 start();

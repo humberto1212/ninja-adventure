@@ -1,5 +1,3 @@
- 
-
 //--------------
 //   Selectors
 //--------------
@@ -28,8 +26,35 @@ ground.src  = './img/background/ground.png'
 let sun = new Image();
 sun.src  = './img/background/sun.png'
 
+// Ninja imajes
 let ninja = new Image();
-ninja.src = './img/ninja/ninja-jump2.png'
+ninja.src = './img/ninja/ninja-run1.png'
+
+let ninja2 = new Image();
+ninja2.src = './img/ninja/ninja-run2.png'
+
+let ninja3 = new Image();
+ninja3.src = './img/ninja/ninja-run3.png'
+
+let ninja4 = new Image();
+ninja4.src = './img/ninja/ninja-run4.png'
+
+let ninja5 = new Image();
+ninja5.src = './img/ninja/ninja-run5.png'
+
+let ninja6 = new Image();
+ninja6.src = './img/ninja/ninja-run6.png'
+
+let ninja7 = new Image();
+ninja7.src = './img/ninja/ninja-run7.png'
+
+let ninja8 = new Image();
+ninja8.src = './img/ninja/ninja-run8.png'
+
+const ninjaArr = [ninja, ninja2, ninja3, ninja4, ninja5, ninja6, ninja7, ninja8]
+
+let count = 0;
+let i = 0
 
 // Buildings images
 let building_1 = new Image();
@@ -51,7 +76,6 @@ tree2.src = './img/background/tree2.png';
 let tree3 = new Image();
 tree3.src = './img/background/tree3.png';
 
-
 //--------------
 //  Audio
 //--------------
@@ -59,7 +83,6 @@ let gameAudio = new Audio('./sounds/yoitrax-ronin.mp3');
 let gameOverAudio = new Audio('./sounds/purrple-cat-sugar-coat.mp3');
 gameAudio.volume = 0.2;
 gameOverAudio.volume = 0.2;
-
 
 //--------------
 //  Variables
@@ -76,11 +99,11 @@ let tree2X = 1500 , tree2Y = 410;
 let tree3X = 2000 , tree3Y = 410;
 
 
-let building_1X = 640, building_1Y = 420;
-let building_2X = 1350, building_2Y = 430;
+let building_1X = 640, building_1Y = 418;
+let building_2X = 1350, building_2Y = 438;
 let building_3X = 1750, building_3Y = 423;
 let building_4X = 2100, building_4Y = 420;
-let building_5X = 2500, building_5Y = 460;
+let building_5X = 2500, building_5Y = 425;
 // let building_6X = 1950, building_6Y = 440;
 // let building_7X = 2250, building_7Y = 460;
 
@@ -120,6 +143,19 @@ let buildingImg = [building_1, building_2, building_3, building_4, building_5]
 //--------------
 // functions
 //--------------
+function ninjaAnimation(){ 
+    ctx.drawImage( ninjaArr[i], ninjaX, ninjaY );
+
+    count++;
+    if (count > 5) {
+        i++
+        count = 0;
+    }
+     if (i > 7) {
+         i = 0;
+     }
+}
+
 let onTopOfBuilding = false;
 // Ninja jump 
 function ninjaJump(){ 
@@ -141,8 +177,7 @@ function ninjaJump(){
             if (ninjaY + ninja.height > groundY){
                 ninjaY = 485
                 down = 3; 
-                up = 10;
-              
+                up = 10;              
              } 
        }
 }
@@ -211,8 +246,9 @@ function printScore() {
     
 }
 
-
-
+//----------
+//   Draw
+//----------
 //Draw function to animate
 function draw(){
 
@@ -232,7 +268,11 @@ function draw(){
     }
 
     //Ninja image
-   ctx.drawImage( ninja, ninjaX, ninjaY );
+    if(ninjaY === 485){
+        ninjaAnimation()
+    }else if(ninjaY < 485){
+        ctx.drawImage( ninja, ninjaX, ninjaY )
+    }
 
     //Buildings
     speed *= 1.00045 // Speed of objects
@@ -243,7 +283,7 @@ function draw(){
         //Collision detection
         if (
             ninjaX < buildingsArr[i].x && 
-            (ninjaX + ninja.width) - 1.5 > buildingsArr[i].x &&  
+            ninjaX + ninja.width > buildingsArr[i].x &&  
             ninjaY > buildingsArr[i].y
             ) {
 
@@ -296,7 +336,6 @@ function draw(){
 //--------------
 // Event Listener
 //--------------
-
 window.addEventListener( 'load', () => {
      canvas.style.display = 'none';
      gamePage.style.display = 'none';
